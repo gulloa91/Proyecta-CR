@@ -72,6 +72,7 @@
               @{
                   Proyecta.Models.Proyecto_Imagenes pi = new Proyecta.Models.Proyecto_Imagenes();
                   List<Proyecta.Models.Proyecto_Imagene> lista = pi.getListaImagenesProyecto(@Model.Id);
+                  int contador = 0;
                   if(lista.Count <= 2){
                     foreach (var item in lista){
                         <div class="col-md-4">
@@ -82,17 +83,17 @@
 
                                 <figcaption>
                                     <h5 class="fp-title">
-                                    <a href="#">Color Picker</a>
+                                    <a href="#">Fotografía @(contador++)</a>
                                     </h5>
-                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-content">Galería</div>
                                     <div class="fp-buttons">
                                     <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
                                         <i class="icon-file-text-alt"></i>
-                                        View Details
+                                        Detalles
                                     </a>
                                     <a class="btn btn-default btn-sm fp-lightbox-btn prettyphoto" data-rel="prettyPhoto" href="http://placehold.it/700x500">
                                         <i class="icon-zoom-in"></i>
-                                        View Bigger
+                                        Agrandar
                                     </a>
                                     </div>
                                 </figcaption>
@@ -111,17 +112,17 @@
 
                                 <figcaption>
                                     <h5 class="fp-title">
-                                    <a href="#">Color Picker</a>
+                                    <a href="#">Fotografía @(contador++)</a>
                                     </h5>
-                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-content">Galería</div>
                                     <div class="fp-buttons">
                                     <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
                                         <i class="icon-file-text-alt"></i>
-                                        View Details
+                                        Detalles
                                     </a>
                                     <a class="btn btn-default btn-sm fp-lightbox-btn prettyphoto" data-rel="prettyPhoto" href="http://placehold.it/700x500">
                                         <i class="icon-zoom-in"></i>
-                                        View Bigger
+                                        Agrandar
                                     </a>
                                     </div>
                                 </figcaption>
@@ -152,9 +153,9 @@
                                 <img alt="" src="@lista[i].urlImagen.Replace("~","")">
                                 <figcaption>
                                     <h5 class="fp-title">
-                                    <a href="#">Color Picker</a>
+                                    <a href="#">Fotografía @(contador++)</a>
                                     </h5>
-                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-content">Galería</div>
                                     <div class="fp-buttons">
                                     <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
                                         <i class="icon-file-text-alt"></i>

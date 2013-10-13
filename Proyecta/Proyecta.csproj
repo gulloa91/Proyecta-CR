@@ -161,6 +161,7 @@
     <Content Include="assets\images\EcoParque.jpg" />
     <Content Include="assets\images\Gobierno Digital\logo.png" />
     <Content Include="assets\images\Grupo Inco\logo.png" />
+    <Content Include="assets\images\IDS\IDS.png" />
     <Content Include="assets\images\Logo Proyecta.png" />
     <Content Include="assets\images\logo-small-top.png" />
     <Content Include="assets\images\logo.png" />
