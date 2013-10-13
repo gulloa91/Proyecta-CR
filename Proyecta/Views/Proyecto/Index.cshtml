@@ -36,10 +36,20 @@
                     <span style="font-size:medium;font-weight:bold;">Correo: </span><span>@split[1]</span>
                   
                     <h2>Participantes</h2><br /><!--8 participantes para que no se salga de la pagina-->
-                    <span>-</span><br />
-                    <span>-</span><br />                    
+                    
+                        Proyecta.Models.Proyecto_Persona pp = new Proyecta.Models.Proyecto_Persona();
+                        List<Proyecta.Models.Proyecto_Persona> lista3 = pp.getParticipantes(@Model.Id);
+                        Proyecta.Models.Persona per = new Proyecta.Models.Persona();
+                        if(lista3.Count <= 9){
+                            foreach(var item in lista3){
+                                <span>@per.getPersona(item.IdPersona)</span><br />
+                            }
+                        }else{
+                            for(int i=0;i<9;++i){//para cuando sean mas de nueve personas
+                                <span>@per.getPersona(lista3[i].IdPersona)</span><br />
+                            }
+                        }
                     }
-                 
             </div>
         </div>
     </div>

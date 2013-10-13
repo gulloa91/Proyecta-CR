@@ -44,7 +44,7 @@ namespace Proyecta.Controllers
             p.Id = Guid.NewGuid();
             //p.FechaFinal = DateTime.Now;
             //p.FechaInicio = DateTime.Now;
-            p.Cedula_Proponiente = "000000000";
+            p.Cedula_Proponiente = "304650906";
             p.Estado = 'N';
             HttpPostedFileBase image = Request.Files["imagen"];
             p.urlImagen = saveImage(image, p);
@@ -117,7 +117,14 @@ namespace Proyecta.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Participar(Proyecta.Models.Proyecto_Persona pp)
         {
-            pp.IdPersona = new Guid(Session["idPersona"].ToString());
+            pp.IdPersona = new Guid(/*Session["idPersona"].ToString()*/"1AAFBD06-1662-4699-979F-E5572E62855F");
+            if (ModelState.IsValid)
+            {
+                if (pp.insertarEnProyecto(pp) == 1)
+                {
+                    
+                }
+            }
             return View(pp);
         }
 

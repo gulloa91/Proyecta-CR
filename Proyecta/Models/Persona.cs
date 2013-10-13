@@ -65,5 +65,11 @@ namespace Proyecta.Models
             Usuario u = (from a in ct.Usuarios where a.Id_Persona == p.Id select a).FirstOrDefault();
             return p.Apellido1+","+p.Nombre+" "+u.Correo;
         }
+
+        public String getPersona(Guid idPersona) {
+            ModeloDataContext ct = new ModeloDataContext();
+            Persona p = (from a in ct.Personas where a.Id == idPersona select a).FirstOrDefault();
+            return p.Nombre +" " + p.Apellido1; 
+        }
     }
 }

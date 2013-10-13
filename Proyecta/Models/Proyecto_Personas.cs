@@ -28,7 +28,9 @@ namespace Proyecta.Models
             try
             {
                 ModeloDataContext ct = new ModeloDataContext();
-
+                ct.Proyecto_Personas.InsertOnSubmit(pp);
+                ct.SubmitChanges();
+                ct.Dispose();
                 return 1;
             }
             catch (Exception e)
@@ -36,6 +38,13 @@ namespace Proyecta.Models
                 return -1;
             }
             
+        }
+
+        public List<Proyecto_Persona> getParticipantes(Guid idProyecto)
+        {
+            ModeloDataContext ct = new ModeloDataContext();
+            List<Proyecto_Persona> lista = (from a in ct.Proyecto_Personas where a.IdProyecto == idProyecto select a).ToList();
+            return lista;
         }
 
     }
