@@ -1,0 +1,177 @@
+﻿@model IEnumerable<Proyecta.Models.Proyecto>
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string descripcion = "";
+}
+
+@section header{
+
+    <div class="container">
+        <div class="col-md-3">
+            
+        </div>
+        <div class="col-md-9">
+            <h3>Proyectos Destacados</h3>
+        </div>
+        <div class="col-md-3">
+            <div class="post-side-bar">
+                <div class="widget widget-cats">
+                    <h4 class="widget-title">Categorías de Proyectos
+                    </h4>
+                    <ul>
+                        <li>
+                            <a href="#"><i class="icon-user"></i>Participación y Organización Comunitaria</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-user"></i>Bienestar del Adulto Mayor</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-user"></i>Comunidades Indígenas</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-heart"></i>Salud Mental y Emocional</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-heart"></i>Salud Ambiental</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-heart"></i>Salud Sexual y Reproductiva</a>
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="icon-heart"></i>Salud Materna-Infantil</a>
+                        </li>
+                    </ul>
+                </div>
+                <img src="~/assets/images/Logo Proyecta.png" style="width: 75%; margin-top: 20px;" />
+            </div>
+            
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                @foreach(var item in Model){
+                    descripcion = item.Propuesta;
+                    string url = "";
+                    try{
+                        url = (item.urlImagen).Replace("~", "");
+                    } catch(Exception e){ }
+                    
+                    if (descripcion.Length > 200)
+                    {
+                        descripcion = descripcion.Substring(0, 199) + " ...";
+                    }
+                    string link = Request.Url.Host + "/Proyecto/Index?id=" + item.Id;
+                    <div class="col-md-4">
+                        <div class="team-member animated-when-visible delay-animation-one animated bounceInUp" data-animation-type="bounceInUp">
+                            <div class="member-avatar">
+                                <a href="~/Proyecto/Index?id=@item.Id"><!--imagen redirecciona-->
+                                    <div style="height: 150px;">
+                                        <img alt="" src="@url" style="height: 100%;"/>
+                                    </div>
+                                </a>
+                            </div>
+                            <h3 style="min-height: 90px;">@item.Nombre</h3>
+                            <h4>Categoría:<br style="margin-top: 2px;" /> <b>@item.Categoria</b></h4>
+                            <p>@descripcion</p>
+                            <p><a href="~/Proyecto/Index?id=@item.Id">Leer más</a></p>
+                            <div class="member-social">
+                                <a href="#" onclick="
+                                    window.open(
+                                      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('+ @link +'), 
+                                      'facebook-share-dialog', 
+                                      'width=626,height=436'); 
+                                    return false;">
+                                    <i class="icon-facebook" style="line-height: 30px"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="icon-twitter" style="line-height: 30px"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="icon-linkedin" style="line-height: 30px"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="icon-envelope" style="line-height: 30px"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-9">
+            <div style="border-top:1px solid #ddd;margin-top:20px;">
+                <h3>Patrocinadores Destacados</h3>
+            </div>
+            <div class="clients">
+            <div class="row bottom-margin">
+                <div class="col-md-4">
+                    <div style="width: 100%">
+                        <img alt="" class="animated-when-visible animated rotateInUpLeft" data-animation-type="rotateInUpLeft" src="~/assets/images/Grupo%20Inco/logo.png" style="height: 90px;">
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div style="width: 100%;">
+                        <img alt="" class="animated-when-visible delay-animation-one animated rotateInUpLeft" data-animation-type="rotateInUpLeft" src="~/assets/images/Gobierno%20Digital/logo.png" style="height: 90px;">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="width: 100%;">
+                        <img alt="" class="animated-when-visible delay-animation-two animated rotateInUpLeft" data-animation-type="rotateInUpLeft" src="~/assets/images/Defensoria/logo.jpg" style="height: 90px;">
+                    </div>
+                </div>
+            </div>
+    </div>
+        </div>
+    </div>
+}
+
+@section content{
+    <div class='separator-shadow-top sub-screenshot-shadow'>
+        <img alt='' src='~/assets/images/shadow-separator-wide-top.png'>
+    </div>
+
+    <div class='iconed-features lift-on-hover style-1' style="margin-bottom: 0px;">
+        <div class='row'>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='~/Proyecto/BuscarProyecto'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-eye-open'></i>
+                            </div>
+                            <h4>Busca proyectos</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='~/Proyecto/CrearProyecto/'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-gear'></i>
+                            </div>
+                            <h4>Crea tu proyecto</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='#'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-info'></i>
+                            </div>
+                            <h4>Información y guía para crear proyectos</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

@@ -1,0 +1,176 @@
+﻿@model Proyecta.Models.Proyecto
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section content{
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-9" style="border-right:1px solid #ddd;">
+                <h2>Proyecto: @Html.DisplayFor(model => model.Nombre)</h2>
+                <h2>Descripción:</h2>
+                <p>@Html.DisplayFor(model => model.Propuesta)</p>
+                <h2>Recursos:</h2>
+                <p>@Html.DisplayFor(model => model.Recursos)</p>
+
+                <a class='btn btn-default navbar-btn' href='/Proyecto/Participar?idProyecto=@Model.Id'>
+                    Participar en el proyecto
+                    <i class='icon-plus-sign'></i>
+                </a>
+
+                <a class='btn btn-default navbar-btn' href='/Proyecto/Participar?idProyecto=@Model.Id'>
+                    Patrocinar el proyecto
+                    <i class='icon-plus-sign'></i>
+                </a>
+            </div>
+            <div class="col-md-3">
+                @{
+                    Proyecta.Models.Persona p = new Proyecta.Models.Persona();
+                    String[] split = p.getNombrePersona(@Model.Id).Split(' ');//recupera el nombre
+                    String nombre = p.getNombrePersona(@Model.Id);//recupera el nombre
+                    
+                    <h2>Información de Contacto</h2><br />
+                    <span style="font-size:medium;font-weight:bold;">Nombre: </span><span>@split[0]</span><br /><br />
+                    <span style="font-size:medium;font-weight:bold;">Correo: </span><span>@split[1]</span>
+                  
+                    <h2>Participantes</h2><br /><!--8 participantes para que no se salga de la pagina-->
+                    <span>-</span><br />
+                    <span>-</span><br />                    
+                    }
+                 
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pull-right carousel-top-controls" style="float:left;">
+      <a data-slide="prev" href="#carousel-works">
+        <span class="icon-angle-left"></span>
+      </a>
+      <a data-slide="next" href="#carousel-works">
+        <span class="icon-angle-right"></span>
+      </a>
+    </div>
+    <h2 class="header-lined">Imágenes de los participantes</h2>
+    <div class="carousel slide carousel-with-animated-content" id="carousel-works">
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <div class="row">
+              @{
+                  Proyecta.Models.Proyecto_Imagenes pi = new Proyecta.Models.Proyecto_Imagenes();
+                  List<Proyecta.Models.Proyecto_Imagene> lista = pi.getListaImagenesProyecto(@Model.Id);
+                  if(lista.Count <= 2){
+                    foreach (var item in lista){
+                        <div class="col-md-4">
+                            <div class="portfolio-item portfolio-style-3 animated-when-visible animated flipInY" data-animation-type="flipInY">
+                            <div class="frame-browser">
+                                <figure>
+                                <img alt="" src="@item.urlImagen.Replace("~", "")">
+
+                                <figcaption>
+                                    <h5 class="fp-title">
+                                    <a href="#">Color Picker</a>
+                                    </h5>
+                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-buttons">
+                                    <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
+                                        <i class="icon-file-text-alt"></i>
+                                        View Details
+                                    </a>
+                                    <a class="btn btn-default btn-sm fp-lightbox-btn prettyphoto" data-rel="prettyPhoto" href="http://placehold.it/700x500">
+                                        <i class="icon-zoom-in"></i>
+                                        View Bigger
+                                    </a>
+                                    </div>
+                                </figcaption>
+                                </figure>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                  }else{
+                    for(int i=0;i<3;++i){
+                        <div class="col-md-4">
+                            <div class="portfolio-item portfolio-style-3 animated-when-visible animated flipInY" data-animation-type="flipInY">
+                            <div class="frame-browser">
+                                <figure>
+                                <img alt="" src="@lista[i].urlImagen.Replace("~", "")">
+
+                                <figcaption>
+                                    <h5 class="fp-title">
+                                    <a href="#">Color Picker</a>
+                                    </h5>
+                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-buttons">
+                                    <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
+                                        <i class="icon-file-text-alt"></i>
+                                        View Details
+                                    </a>
+                                    <a class="btn btn-default btn-sm fp-lightbox-btn prettyphoto" data-rel="prettyPhoto" href="http://placehold.it/700x500">
+                                        <i class="icon-zoom-in"></i>
+                                        View Bigger
+                                    </a>
+                                    </div>
+                                </figcaption>
+                                </figure>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                  }
+                                   
+              //C#
+              }
+          </div>
+        </div>
+        <div class="item">
+        <div class="row">
+            @{
+                Proyecta.Models.Proyecto_Imagenes pi2 = new Proyecta.Models.Proyecto_Imagenes();
+                List<Proyecta.Models.Proyecto_Imagene> lista2 = pi.getListaImagenesProyecto(@Model.Id);
+                
+                if(lista.Count >= 3){
+                    for (int i = 3; i < lista.Count;++i )
+                    {
+                        <div class="col-md-4">
+                            <div class="portfolio-item portfolio-style-3 animated-when-visible animated flipInY" data-animation-type="flipInY">
+                            <div class="frame-browser">
+                                <figure>
+                                <img alt="" src="@lista[i].urlImagen.Replace("~","")">
+                                <figcaption>
+                                    <h5 class="fp-title">
+                                    <a href="#">Color Picker</a>
+                                    </h5>
+                                    <div class="fp-content">Web Development</div>
+                                    <div class="fp-buttons">
+                                    <a class="btn btn-default btn-sm fp-details-btn" href="portfolio-single.html">
+                                        <i class="icon-file-text-alt"></i>
+                                        View Details
+                                    </a>
+                                    <a class="btn btn-default btn-sm fp-lightbox-btn prettyphoto" data-rel="prettyPhoto" href="http://placehold.it/700x500">
+                                        <i class="icon-zoom-in"></i>
+                                        View Bigger
+                                    </a>
+                                    </div>
+                                </figcaption>
+                                </figure>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                }
+        </div>
+        </div>
+
+      </div>
+        <div class="row">
+            <div class='col-md-12' style="margin-left: 20%;">
+                <div class="fb-comments" data-href="@Request.Url.ToString()" data-mobile="false" data-colorscheme="light" data-numposts="5"></div>
+            </div>
+        </div>
+    </div>
+}

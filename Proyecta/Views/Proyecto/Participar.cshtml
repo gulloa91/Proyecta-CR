@@ -1,0 +1,46 @@
+﻿@model Proyecta.Models.Proyecto_Persona
+
+@{
+    ViewBag.Title = "Participar";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Participar</h2>
+
+@section content{
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        
+        <div class='form-group' style="margin-top: 20px;">
+            <div class='row'>
+                <div class='col-md-12'>
+                    @Html.LabelFor(u => u.Recursos, null, new { @class = "control-label" })
+                    @Html.TextAreaFor(u => u.Recursos, new { @class = "form-control", @placeholder = "Ej: Juan" })
+                    @Html.ValidationMessageFor(u => u.Recursos, null, new { @style="color: red;" })
+                </div>
+            </div>
+            <div class='row'>
+                <div class='col-md-12'>
+                    @Html.LabelFor(u => u.Motivo, null, new { @class = "control-label" })
+                    @Html.TextAreaFor(u => u.Motivo, new { @class = "form-control", @placeholder = "Ej: Juan" })
+                    @Html.ValidationMessageFor(u => u.Motivo, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        
+        <!--boton-->
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-3'>
+
+                </div>
+                <div class='col-md-9'>
+                    <input type="submit"  id="submit" value="Participar" class="btn btn-primary" name="submit" />
+                </div>
+            </div>
+        </div>
+    }
+    
+}

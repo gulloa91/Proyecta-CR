@@ -1,0 +1,132 @@
+﻿@model Proyecta.Models.Proyecto
+
+@{
+    ViewBag.Title = "CrearProyecto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <div class='container'>
+        <h2>Crea tu proyecto
+        </h2>
+    </div>
+}
+
+@section js{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var nowTemp = new Date();
+            var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+            $('.datepicker').datepicker({
+                onRender: function (date) {
+                    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                }
+                //format: "dd/mm/yyyy"
+            });
+        });
+    </script>
+}
+
+@section content{
+
+    @using (Html.BeginForm("CrearProyecto", "Proyecto", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class='form-group' style="margin-top: 20px;">
+            <div class='row'>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.Nombre, null, new { @class = "control-label" })
+                    @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Nombre, null, new { @style="color: red;" })
+                </div>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.Provincia, null, new { @class = "control-label" })
+                    <select name="Provincia" id="Provincia" class="form-control">
+		    		    <option>Provincia</option>
+					    <option value="San José" selected="">San José</option>
+                        <option value="Alajuela">Alajuela</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Limón">Limón</option>				
+                    </select>
+                   
+                    @Html.ValidationMessageFor(u => u.Provincia, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.Canton, null, new { @class = "control-label" })
+                    @Html.TextBoxFor(u => u.Canton, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Canton, null, new { @style="color: red;" })
+                </div>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.Categoria, null, new { @class = "control-label" })
+                    <select name="Categoria" id="Categoria" class="form-control">
+		    		    <option>Categoría</option>
+					    <option value="Participación y Organización Comunitaria" selected="">Participación y Organización Comunitaria</option>
+                        <option value="Bienestar del Adulto Mayor">Bienestar del Adulto Mayor</option>
+                        <option value="Comunidades Indígenas">Comunidades Indígenas</option>
+                        <option value="Salud mental y Emocional">Salud mental y Emocional</option>
+                        <option value="Salud Ambiental">Salud Ambiental</option>
+                        <option value="Salud Sexual y Reproductiva">Salud Sexual y Reproductiva</option>
+                        <option value="Salud Materna-Infantil">Salud Materna-Infantil</option>				
+                    </select>
+                    @Html.ValidationMessageFor(u => u.Categoria, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.FechaInicio, null, new { @class = "control-label" })
+                    @Html.TextBoxFor(u => u.FechaInicio, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(u => u.FechaInicio, null, new { @style="color: red;" })
+                </div>
+                <div class='col-md-6'>
+                    @Html.LabelFor(u => u.FechaFinal, null, new { @class = "control-label" })
+                    @Html.TextBoxFor(u => u.FechaFinal, new { @class = "form-control datepicker" })
+                    @Html.ValidationMessageFor(u => u.FechaFinal, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    @Html.LabelFor(u => u.Propuesta, null, new { @class = "control-label" })
+                    @Html.TextAreaFor(u => u.Propuesta, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Propuesta, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-12'>
+                    @Html.LabelFor(u => u.Recursos, null, new { @class = "control-label" })
+                    @Html.TextAreaFor(u => u.Recursos, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(u => u.Recursos, null, new { @style="color: red;" })
+                </div>
+            </div>
+        </div>
+        <div class='form-group'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <div class="editor-label">
+                        Imagen principal del proyecto
+                    </div>
+                    <div class="editor-field">
+                        <input name="imagen" id="imagen" type="file" />
+                    </div>
+                </div>
+                <div class='col-md-6'>
+                    <input type="submit" id="submit" value="Crear" style="float: right;" class="btn btn-primary" name="submit" />
+                </div>
+            </div>
+        </div>
+    }
+}

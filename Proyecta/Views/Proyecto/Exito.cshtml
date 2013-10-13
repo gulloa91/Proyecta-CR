@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Exito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <div class='container'>
+        <h2>Se creó el proyecto satisfactoriamente</h2>
+    </div>
+
+}
+
+@section content{
+    <div class='iconed-features lift-on-hover style-1' style="margin-bottom: 0px;">
+        <div class='row'>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='~/Proyecto/BuscarProyecto'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-eye-open'></i>
+                            </div>
+                            <h4>Busca proyectos</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='~/Proyecto/CrearProyecto/'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-gear'></i>
+                            </div>
+                            <h4>Crea tu proyecto</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <div class='btn-show-on-parent-hover'>
+                    <a class='read-more-link' href='#'>
+                        <div class='iconed-feature'>
+                            <div class='feature-icon-w'>
+                                <i class='icon-info'></i>
+                            </div>
+                            <h4>Información y guía para crear proyectos</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
