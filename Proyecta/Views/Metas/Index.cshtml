@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section content{
+    <h2>Índice de Desarrollo Social</h2>
+    <h3>¿Qué queremos lograr?</h3>
+    <p style="padding:3px 0 16px 0;margin:0;font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;font-weight: 300;color:#999;">
+        Pretendemos mostrar cómo, a través de proyectos exitosos generamos un cambio social, haciendo que el IDS incremente en las comunidades. <br> Se dan a conocer los proyectos exitosos en comunidades para replicarlos en otras, generando un sistema de desarrollo conjunto a nivel nacional.
+        <br> Brindamos la información suficiente sobre el cálculo de IDS para saber los puntos importantes que se podrían abordar, garantizar el desarrollo social y aumentar los índices de desarrollo.
+    </p>
+
+    <div>
+        <div>
+            <h3>¿Cómo se calcula el IDS?</h3>
+            <p style="padding:3px 0 16px 0;margin:0;font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;font-weight: 300;color:#999;">
+                Se construye a partir de un conjunto de 11 índices socioeconómicos, cuya principal fuente de datos son las estadísticas administrativas de las instituciones
+            públicas. 
+                El IDS se muestra en valores entre 100 y 0. Un valor de 100 significa que, en promedio, el distrito tiene los mejores indicadores, en relación con el resto.
+                <a href="/Metas/InformacionIDS">Leer más</a></p>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h3>Top 10: Distritos con mejor Índice de Desarrollo Social</h3>
+        </div>
+        <div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    var numFila = 1;
+                    var obj;
+                    instantAddress.ajax({
+                        type: "GET",
+                        url: "http://gobiernodigitalcr.cloudapi.junar.com/datastreams/invoke/IDS-2013-AREAS-DE-MAYOR?auth_key=291d7f677e3634a77c7c75291ca2920afa8676d0&filter0=rownum[==]1" + numFila,
+                        data: "{}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "jsonp",
+                        cache: false,
+                        crossDomain: true,
+                        processData: true,
+                        success: function (datos) {
+                            obj = jQuery.parseJSON(datos);
+                            var fila = "<tr><td>" + obj[3] + "</td><td>San Rafael</td><td>99.5</td></tr>";
+                            $("tablaid").append(fila);
+                        }
+                    });
+                });
+            </script>
+
+            <div class="datagrid"><table id="tablaid">
+            <thead><tr><th>Código</th><th>Distrito</th><th>IDS</th></tr></thead>  
+                <tbody>
+                    <tr><td>11803</td><td>San Rafael</td><td>99.5</td></tr>
+                    <tr class="alt"><td>10108</td><td>Mata Redonda</td><td>92.2</td></tr>
+                    <tr><td>10903</td><td>Pozos</td><td>91.9</td></tr>
+                    <tr class="alt"><td>10901</td><td>Santa Ana</td><td>91.9</td></tr>
+                    <tr><td>40802</td><td>Barrantes</td><td>91.9</td></tr>
+                    <tr class="alt"><td>10201</td><td>Escazú</td><td>90.5</td></tr>
+                    <tr><td>11502</td><td>Sabanilla</td><td>90.2</td></tr>
+                    <tr class="alt"><td>20707</td><td>Granja</td><td>88.5</td></tr>
+                    <tr><td>40901</td><td>San Pablo</td><td>88.3</td></tr>
+                    <tr class="alt"><td>20501</td><td>Atenas</td><td>88.2</td></tr>
+                </tbody>
+            </table></div>
+
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <h3>Comunidades con menor IDS por distribuición geográfica</h3>
+                    <p style="padding:3px 0 16px 0;margin:0;font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size: 16px;font-weight: 300;color:#999;">
+                        A continuación se muestran los distritos con índice de desarrollo social bajo. Son comunidades en riesgo y potenciales candidatos para ser afintriones de proyectos. 
+                        </p>
+                     <p style="padding:3px 0 16px 0;margin:0;font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size: 16px;font-weight: 300;color:#999;">
+                          ¡Vamos! Hay que hacer que estos índices suban.
+                       </p>
+        </div>
+               
+
+        <div>
+            <iframe title="Comununidades con Índice de Desarrollo Social Bajo" style="width:100%; height:380px;" width="100" height="380" class="col-md-6"
+                src="http://datosabiertos.mideplan.go.cr/visualizations/embed/IDS-2013-NIVEL-BAJO?height=310&width=610" 
+                frameborder="0" style="border:1px solid #E2E0E0;padding:0;margin:0;">            
+            </iframe><p style="padding:3px 0 15px 0;margin:0;font:11px arial, helvetica, sans-serif;color:#999;">Desarrollado por <a href="http://www.junar.com" title="Junar &middot; Abriendo Datos" style="color:#0862A2;">Junar</a></p>
+        </div>
+    </div>
+    
+    
+}
+
+
+
